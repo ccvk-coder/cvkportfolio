@@ -1,0 +1,174 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+/*
+ * Design system: dark glassmorphism CRM dashboard.
+ * All colors live here as tokens. Never hardcode a color in a component.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 6px);
+  --radius-md: calc(var(--radius) - 3px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 6px);
+  --radius-2xl: calc(var(--radius) + 12px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-surface: var(--surface);
+  --color-surface-strong: var(--surface-strong);
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --text-display: clamp(2.25rem, 5vw, 3.75rem);
+  --text-display--line-height: 1.05;
+  --text-section: clamp(1.5rem, 3vw, 2.125rem);
+  --text-section--line-height: 1.15;
+}
+
+:root {
+  --radius: 1rem;
+  --background: oklch(0.15 0.03 264);
+  --foreground: oklch(0.99 0 0);
+  --card: oklch(0.99 0 0 / 6%);
+  --card-foreground: oklch(0.99 0 0);
+  --popover: oklch(0.19 0.035 264);
+  --popover-foreground: oklch(0.99 0 0);
+  --primary: oklch(0.55 0.22 264);
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.53 0.25 294);
+  --secondary-foreground: oklch(0.99 0 0);
+  --muted: oklch(0.99 0 0 / 8%);
+  --muted-foreground: oklch(0.73 0.03 257);
+  --accent: oklch(0.83 0.13 199);
+  --accent-foreground: oklch(0.15 0.03 264);
+  --destructive: oklch(0.62 0.22 25);
+  --destructive-foreground: oklch(0.99 0 0);
+  --border: oklch(0.99 0 0 / 12%);
+  --input: oklch(0.99 0 0 / 14%);
+  --ring: oklch(0.83 0.13 199);
+  --surface: oklch(0.99 0 0 / 6%);
+  --surface-strong: oklch(0.99 0 0 / 10%);
+  --blur: 16px;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Ambient blue/violet gradient field the glass reads against. */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      radial-gradient(55% 45% at 12% 8%, oklch(0.53 0.25 294 / 32%), transparent 70%),
+      radial-gradient(50% 45% at 88% 12%, oklch(0.55 0.22 264 / 30%), transparent 70%),
+      radial-gradient(45% 40% at 70% 92%, oklch(0.83 0.13 199 / 16%), transparent 70%),
+      var(--color-background);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 2px;
+  }
+}
+
+/* The only place glass properties are declared. */
+@utility glass {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow:
+    0 8px 32px oklch(0.1 0.02 264 / 35%),
+    inset 0 1px 0 oklch(1 0 0 / 18%);
+  -webkit-backdrop-filter: blur(var(--blur)) saturate(140%);
+  backdrop-filter: blur(var(--blur)) saturate(140%);
+}
+
+/* Inner surfaces: solid tint, never glass inside glass. */
+@utility inset-panel {
+  background: var(--color-muted);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+@utility label-eyebrow {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-muted-foreground);
+}
+
+@utility lift {
+  transition:
+    transform 0.25s ease,
+    background-color 0.25s ease;
+  &:hover {
+    transform: translateY(-4px);
+    background: var(--color-surface-strong);
+  }
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+  .glass {
+    background: oklch(0.22 0.035 264 / 94%);
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .glass {
+    background: oklch(0.22 0.035 264 / 96%);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --blur: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

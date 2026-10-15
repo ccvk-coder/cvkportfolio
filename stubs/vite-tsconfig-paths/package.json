@@ -1,0 +1,13 @@
+{
+  "name": "vite-tsconfig-paths",
+  "version": "6.9.9",
+  "description": "No-op stub: Vite 8 resolves tsconfig paths natively via resolve.tsconfigPaths; this stub only prevents the duplicate-plugin warning from @lovable.dev/vite-tanstack-config.",
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js"
+  },
+  "peerDependencies": {
+    "vite": "*"
+  }
+}
