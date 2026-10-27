@@ -3,6 +3,10 @@ import unifiedSystemAsset from "@/assets/unified-system.png";
 import gymAsuraAsset from "@/assets/gym-asura.png";
 import careerEmpireoneAsset from "@/assets/career-empireone.png";
 import empireoneHealthAsset from "@/assets/empireone-health.png";
+import gdCurtisWebFormAsset from "@/assets/gd-curtis-web-form.jpg";
+import gdEmpireoneHealthAsset from "@/assets/gd-empireone-health.jpg";
+import gdEmpireoneTalentAsset from "@/assets/gd-empireone-talent.jpg";
+import gdEmpireoneEngagementAsset from "@/assets/gd-empireone-engagement.jpg";
 import {
   Home,
   User,
@@ -126,7 +130,7 @@ export const expertise = [
   },
 ];
 
-export const filters = ["All", "UX/UI", "Web", "Systems"];
+export const filters = ["All", "Graphic Design", "UX/UI", "Web", "Systems"];
 
 export const projects = [
   {
@@ -214,6 +218,58 @@ export const projects = [
       "Mapped the user journey, designed the key screens in Figma, documented the states for handoff, and implemented the frontend.",
     result:
       "A single place where health information and everyday admin are handled without switching between tools.",
+  },
+  {
+    id: "gd-curtis-web-form",
+    name: "Curtis International — Customer Web Form",
+    category: "Graphic Design / Social Media",
+    tags: ["Graphic Design"],
+    type: "graphic",
+    hue: 220,
+    image: gdCurtisWebFormAsset,
+    summary:
+      "Launch announcement graphic for Curtis International Ltd's new customer web form — designed to communicate ease of use and drive adoption.",
+    role: "Graphic Designer",
+    tools: ["Adobe Photoshop", "Canva"],
+  },
+  {
+    id: "gd-empireone-health-launch",
+    name: "EmpireOne Health — Launch Announcement",
+    category: "Graphic Design / Social Media",
+    tags: ["Graphic Design"],
+    type: "graphic",
+    hue: 200,
+    image: gdEmpireoneHealthAsset,
+    summary:
+      "Official deployment announcement graphic for EmpireOne Health — showcasing the platform's capabilities and positioning.",
+    role: "Graphic Designer",
+    tools: ["Adobe Photoshop", "Canva"],
+  },
+  {
+    id: "gd-empireone-talent",
+    name: "EmpireOneCX — Talent Acquisition Module",
+    category: "Graphic Design / Social Media",
+    tags: ["Graphic Design"],
+    type: "graphic",
+    hue: 260,
+    image: gdEmpireoneTalentAsset,
+    summary:
+      "Deployment announcement for the EmpireOneCX Talent Acquisition Module — highlighting smarter hiring and stronger team building.",
+    role: "Graphic Designer",
+    tools: ["Adobe Photoshop", "Canva"],
+  },
+  {
+    id: "gd-empireone-engagement",
+    name: "EmpireOneCX — Engagement Floor",
+    category: "Graphic Design / Social Media",
+    tags: ["Graphic Design"],
+    type: "graphic",
+    hue: 290,
+    image: gdEmpireoneEngagementAsset,
+    summary:
+      "Deployment launch graphic for the EmpireOneCX Engagement Floor — a hub for team activities, events, and company culture.",
+    role: "Graphic Designer",
+    tools: ["Adobe Photoshop", "Canva"],
   },
 ];
 

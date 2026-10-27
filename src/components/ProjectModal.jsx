@@ -35,33 +35,54 @@ const ProjectModal = ({ project, onClose }) => (
               {project.summary}
             </Dialog.Description>
 
-            <div className="mt-5 grid gap-3 sm:grid-cols-3">
-              <ProjectPreview
-                hue={project.hue}
-                label={project.name}
-                image={project.image}
-                className="aspect-[16/10] sm:col-span-2"
-              />
-              <div className="inset-panel flex flex-col gap-4 p-4">
-                <Field label="Role">{project.role}</Field>
-                <Field label="Tools">{project.tools.join(" • ")}</Field>
-              </div>
-            </div>
-
-            <dl className="mt-5 grid gap-4 sm:grid-cols-2">
-              {[
-                ["Overview", project.overview],
-                ["Challenge", project.challenge],
-                ["Solution", project.solution],
-                ["My Contribution", project.contribution],
-                ["Result", project.result],
-              ].map(([label, value]) => (
-                <div key={label} className="inset-panel p-4">
-                  <dt className="label-eyebrow">{label}</dt>
-                  <dd className="mt-1.5 text-sm text-muted-foreground">{value}</dd>
+            {project.type === "graphic" ? (
+              /* ── Graphic Design layout: large image + tools panel ── */
+              <>
+                <div className="mt-5 flex justify-center">
+                  <img
+                    src={project.image}
+                    alt={`${project.name} — graphic design`}
+                    className="inset-panel rounded-lg object-contain"
+                    style={{ maxHeight: "55vh", width: "auto", maxWidth: "100%" }}
+                  />
                 </div>
-              ))}
-            </dl>
+                <div className="inset-panel mt-4 flex flex-wrap gap-6 p-4">
+                  <Field label="Role">{project.role}</Field>
+                  <Field label="Tools">{project.tools.join(" • ")}</Field>
+                </div>
+              </>
+            ) : (
+              /* ── UX/UI Case Study layout ── */
+              <>
+                <div className="mt-5 grid gap-3 sm:grid-cols-3">
+                  <ProjectPreview
+                    hue={project.hue}
+                    label={project.name}
+                    image={project.image}
+                    className="aspect-[16/10] sm:col-span-2"
+                  />
+                  <div className="inset-panel flex flex-col gap-4 p-4">
+                    <Field label="Role">{project.role}</Field>
+                    <Field label="Tools">{project.tools.join(" • ")}</Field>
+                  </div>
+                </div>
+
+                <dl className="mt-5 grid gap-4 sm:grid-cols-2">
+                  {[
+                    ["Overview", project.overview],
+                    ["Challenge", project.challenge],
+                    ["Solution", project.solution],
+                    ["My Contribution", project.contribution],
+                    ["Result", project.result],
+                  ].map(([label, value]) => (
+                    <div key={label} className="inset-panel p-4">
+                      <dt className="label-eyebrow">{label}</dt>
+                      <dd className="mt-1.5 text-sm text-muted-foreground">{value}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </>
+            )}
           </>
         ) : null}
       </Dialog.Content>
