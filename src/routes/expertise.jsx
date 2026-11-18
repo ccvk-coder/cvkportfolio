@@ -29,7 +29,7 @@ function ExpertisePage() {
       <PageHeader
         eyebrow="Capabilities"
         title="Expertise"
-        description="Six areas I work in, and the tools I use in each."
+        description="The disciplines I work across, and the tools I use in each."
       />
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
         {expertise.map((skill) => (

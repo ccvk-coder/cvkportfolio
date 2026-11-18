@@ -1,8 +1,11 @@
+import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Mail } from "lucide-react";
-import { dashboardCards, profile } from "@/data/portfolio";
+import { dashboardCards, profile, projects } from "@/data/portfolio";
 import FadeIn from "@/components/FadeIn";
 import GlassCard from "@/components/GlassCard";
+import ProjectCard from "@/components/ProjectCard";
+import ProjectModal from "@/components/ProjectModal";
 import StatusBadge from "@/components/StatusBadge";
 
 export const Route = createFileRoute("/")({
@@ -25,7 +28,11 @@ export const Route = createFileRoute("/")({
   component: HomePage,
 });
 
+const featuredProjects = projects.filter((project) => !project.type).slice(0, 3);
+
 function HomePage() {
+  const [selected, setSelected] = useState(null);
+
   return (
     <div className="flex flex-col gap-12">
       <FadeIn>
@@ -68,22 +75,42 @@ function HomePage() {
         ))}
       </section>
 
-      <FadeIn delay={0.3}>
-        <GlassCard as="section" aria-label="Current activity" className="grid gap-4 sm:grid-cols-3">
-          <div className="inset-panel p-4">
-            <p className="label-eyebrow">Current focus</p>
-            <p className="mt-1.5 font-semibold">{profile.meta.focus}</p>
+      <section aria-labelledby="featured-work-title" className="flex flex-col gap-5">
+        <FadeIn delay={0.2}>
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <p className="label-eyebrow">Selected work</p>
+              <h2
+                id="featured-work-title"
+                className="mt-2 text-section font-extrabold tracking-tight"
+              >
+                Systems people use every day
+              </h2>
+              <p className="mt-2 max-w-[58ch] text-sm text-muted-foreground">
+                A few of the platforms I designed and specified, from HR and recruitment to gym
+                operations.
+              </p>
+            </div>
+            <Link
+              to="/work"
+              className="inline-flex min-h-11 shrink-0 items-center gap-2 rounded-md border border-border bg-muted px-4 text-sm font-semibold text-foreground transition-colors hover:bg-surface-strong"
+            >
+              All projects
+              <ArrowRight aria-hidden="true" className="size-4" />
+            </Link>
           </div>
-          <div className="inset-panel p-4">
-            <p className="label-eyebrow">Projects</p>
-            <p className="mt-1.5 font-semibold">04+</p>
-          </div>
-          <div className="inset-panel p-4">
-            <p className="label-eyebrow">Design tool</p>
-            <p className="mt-1.5 font-semibold">{profile.meta.designTool}</p>
-          </div>
-        </GlassCard>
-      </FadeIn>
+        </FadeIn>
+
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {featuredProjects.map((project, index) => (
+            <FadeIn key={project.id} delay={0.24 + 0.05 * index} className="h-full">
+              <ProjectCard project={project} onOpen={setSelected} />
+            </FadeIn>
+          ))}
+        </div>
+
+        <ProjectModal project={selected} onClose={() => setSelected(null)} />
+      </section>
     </div>
   );
 }

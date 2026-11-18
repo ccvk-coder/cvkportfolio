@@ -161,6 +161,36 @@
   }
 }
 
+/* Mobile nav bar: sizes the six items so they stay on a single line.
+   !important is required because GooeyNav writes its size tokens inline. */
+.nav-bar-compact {
+  --gn-pad: 6px !important;
+  --gn-font: 11px !important;
+  --gn-x: 7px !important;
+  --gn-y: 8px !important;
+  --gn-gap: 3px !important;
+}
+
+@media (max-width: 359px) {
+  .nav-bar-compact {
+    --gn-pad: 4px !important;
+    --gn-font: 10px !important;
+    --gn-x: 4px !important;
+    --gn-y: 7px !important;
+    --gn-gap: 2px !important;
+  }
+}
+
+@media (min-width: 640px) {
+  .nav-bar-compact {
+    --gn-pad: 6px !important;
+    --gn-font: 13px !important;
+    --gn-x: 12px !important;
+    --gn-y: 8px !important;
+    --gn-gap: 4px !important;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

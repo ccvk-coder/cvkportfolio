@@ -56,7 +56,7 @@ export const nav = [
   { to: "/expertise", label: "Expertise", icon: Sparkles },
   { to: "/work", label: "Work", icon: Briefcase },
   { to: "/process", label: "Process", icon: Workflow },
-  { to: "/contact", label: "Contact Me", icon: Mail },
+  { to: "/contact", label: "Contact", icon: Mail },
 ];
 
 export const dashboardCards = [
